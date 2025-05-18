@@ -17,3 +17,7 @@ db.sqlite3
 
 # VS Code files
 .vscode/
+
+# Ignore PyCharm project files
+.idea/
+
