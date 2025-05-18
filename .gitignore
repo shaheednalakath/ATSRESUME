@@ -1,0 +1,19 @@
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment folder
+ats/
+
+# Django related
+db.sqlite3
+*.log
+/staticfiles/
+/media/
+
+# Environment variables
+.env
+
+# VS Code files
+.vscode/
