@@ -72,8 +72,14 @@ WSGI_APPLICATION = 'atsproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ATS',              # <-- your ATS DB name
+        'USER': 'postgres',         # or your DB username
+        'PASSWORD': '1234',         # replace with your DB password
+        'HOST': 'localhost',        # or your DB host
+        'PORT': '5432',
     }
 }
 
