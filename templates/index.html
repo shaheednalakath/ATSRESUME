@@ -20,7 +20,9 @@
 
         <link href="css/bootstrap-icons.css" rel="stylesheet">
 
-        <link href="css/templatemo-topic-listing.css" rel="stylesheet">      
+        <link href="css/templatemo-topic-listing.css" rel="stylesheet">
+
+        <link href="css/loader.css" rel="stylesheet">
 <!--
 
 TemplateMo 590 topic listing
@@ -31,7 +33,15 @@ https://templatemo.com/tm-590-topic-listing
     </head>
     
     <body id="top">
-
+<div id="loader-wrapper">
+    <div class="spinner-container">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="loading-text">Please wait...</p>
+    </div>
+  </div>
+<div id="page-content" class="page-hidden">
         <main>
 
             <nav class="navbar navbar-expand-lg">
@@ -44,11 +54,11 @@ https://templatemo.com/tm-590-topic-listing
                     <div class="d-lg-none ms-auto me-4">
                         <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
                     </div>
-    
+
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-    
+
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-lg-5 me-lg-auto">
                             <li class="nav-item">
@@ -58,7 +68,7 @@ https://templatemo.com/tm-590-topic-listing
                             <li class="nav-item">
                                 <a class="nav-link click-scroll" href="#section_2">Browse Topics</a>
                             </li>
-    
+
                             <li class="nav-item">
                                 <a class="nav-link click-scroll" href="#section_3">How it works</a>
                             </li>
@@ -66,7 +76,7 @@ https://templatemo.com/tm-590-topic-listing
                             <li class="nav-item">
                                 <a class="nav-link click-scroll" href="#section_4">FAQs</a>
                             </li>
-    
+
                             <li class="nav-item">
                                 <a class="nav-link click-scroll" href="#section_5">Contact</a>
                             </li>
@@ -88,7 +98,8 @@ https://templatemo.com/tm-590-topic-listing
                     </div>
                 </div>
             </nav>
-            
+
+<!--            //search part-->
 
             <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
                 <div class="container">
@@ -116,7 +127,7 @@ https://templatemo.com/tm-590-topic-listing
                 </div>
             </section>
 
-
+<!--// bellow search-->
             <section class="featured-section">
                 <div class="container">
                     <div class="row justify-content-center">
@@ -185,7 +196,7 @@ https://templatemo.com/tm-590-topic-listing
                 </div>
             </section>
 
-
+<!--//browse topic-->
             <section class="explore-section section-padding" id="section_2">
                 <div class="container">
                     <div class="row">
@@ -510,7 +521,7 @@ https://templatemo.com/tm-590-topic-listing
                 </div>
             </section>
 
-
+<!--//work flow how it work-->
             <section class="timeline-section section-padding" id="section_3">
                 <div class="section-overlay"></div>
 
@@ -571,7 +582,7 @@ https://templatemo.com/tm-590-topic-listing
                 </div>
             </section>
 
-
+<!--//frequ qus-->
             <section class="faq-section section-padding" id="section_4">
                 <div class="container">
                     <div class="row">
@@ -636,7 +647,7 @@ https://templatemo.com/tm-590-topic-listing
                 </div>
             </section>
 
-
+<!--//map-->
             <section class="contact-section section-padding section-bg" id="section_5">
                 <div class="container">
                     <div class="row">
@@ -774,13 +785,26 @@ https://templatemo.com/tm-590-topic-listing
             </div>
         </footer>
 
-
+</div>
         <!-- JAVASCRIPT FILES -->
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
         <script src="js/jquery.sticky.js"></script>
         <script src="js/click-scroll.js"></script>
         <script src="js/custom.js"></script>
+<script>
+    window.addEventListener("load", function () {
+      const loaderWrapper = document.getElementById("loader-wrapper");
+      const pageContent = document.getElementById("page-content");
+
+      loaderWrapper.style.opacity = "0";
+      setTimeout(() => {
+        loaderWrapper.style.display = "none";
+        pageContent.classList.remove("page-hidden");
+        pageContent.classList.add("animate-up");
+      }, 500);
+    });
+  </script>
 
     </body>
 </html>
