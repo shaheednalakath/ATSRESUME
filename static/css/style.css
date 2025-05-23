@@ -1,0 +1,25 @@
+/* Basic custom styles */
+
+body {
+    background: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page-wrapper {
+    padding: 15px;
+}
+
+.card {
+    border-radius: 12px;
+}
+
+.btn-primary {
+    background-color: #0069d9;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Add any other custom styling you want here */
