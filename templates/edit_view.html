@@ -1,12 +1,182 @@
 {% load static %}
+<!-- Include Bootstrap Icons (optional) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-<a href="{% static 'pdf/res.pdf' %}" target="_blank">View Sample Resume</a>
-</body>
-</html>
+<!-- LEFT COLUMN: Resume Input Form -->
+<div class="col-xl-6 col-lg-7 col-md-6 col-sm-12 border-end pe-4">
+    <div class="tm-bg-gray tm-video-details p-4 w-100">
+
+        <!-- Resume Input Form -->
+        <form class="w-100" enctype="multipart/form-data" id="resumeForm">
+
+            <!-- Personal Details Section -->
+            <h4 class="mt-4 mb-3 border-bottom pb-2 text-primary">Personal Details</h4>
+            <div class="mb-3">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control shadow-sm" placeholder="Enter your full name" id="user_name">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Your Address</label>
+                <input type="text" class="form-control shadow-sm" placeholder="Enter your address" id="user_address">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control shadow-sm" placeholder="Enter your email" id="user_email">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-control shadow-sm" placeholder="Enter your phone number" id="user_phone">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">LinkedIn Profile</label>
+                <input type="url" class="form-control shadow-sm" placeholder="LinkedIn profile link" id="user_social_profile">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Upload Profile Photo</label>
+                <input type="file" class="form-control shadow-sm" accept="image/*" id="user_img">
+            </div>
+
+            <!-- Professional Summary -->
+            <h4 class="mt-4 mb-3 border-bottom pb-2 text-primary">Professional Summary</h4>
+            <div class="mb-3">
+                <textarea class="form-control shadow-sm" rows="4" placeholder="Write your professional summary here"></textarea>
+            </div>
+
+            <!-- Education -->
+            <h4 class="mt-4 mb-3 border-bottom pb-2 text-primary">Education</h4>
+            <div id="education-section">
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <input type="text" class="form-control mb-2" placeholder="Degree">
+                        <input type="text" class="form-control mb-2" placeholder="Institution">
+                        <input type="text" class="form-control mb-2" placeholder="Duration">
+                        <input type="text" class="form-control mb-2" placeholder="CGPA/Grade">
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-outline-primary btn-sm mb-3" onclick="addEducation()">
+                <i class="bi bi-plus-circle"></i> Add Education
+            </button>
+
+            <!-- Projects -->
+            <h4 class="mt-4 mb-3 border-bottom pb-2 text-primary">Projects</h4>
+            <div id="project-section">
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <input type="text" class="form-control mb-2" placeholder="Project Title">
+                        <textarea class="form-control mb-2" rows="3" placeholder="Project Description"></textarea>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-outline-primary btn-sm mb-3" onclick="addProject()">
+                <i class="bi bi-plus-circle"></i> Add Project
+            </button>
+
+            <!-- Experience -->
+            <h4 class="mt-4 mb-3 border-bottom pb-2 text-primary">Experience</h4>
+            <div id="experience-section">
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <input type="text" class="form-control mb-2" placeholder="Job Title / Role">
+                        <input type="text" class="form-control mb-2" placeholder="Company Name / Freelance">
+                        <input type="text" class="form-control mb-2" placeholder="Duration">
+                        <textarea class="form-control mb-2" rows="3" placeholder="Responsibilities"></textarea>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-outline-primary btn-sm mb-3" onclick="addExperience()">
+                <i class="bi bi-plus-circle"></i> Add Experience
+            </button>
+
+            <!-- Certifications -->
+            <h4 class="mt-4 mb-3 border-bottom pb-2 text-primary">Certifications</h4>
+            <div id="certification-section">
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <input type="text" class="form-control mb-2" placeholder="Certificate Title">
+                        <input type="file" class="form-control mb-2" name="certification[]">
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-outline-primary btn-sm mb-3" onclick="addCertification()">
+                <i class="bi bi-plus-circle"></i> Add Certification
+            </button>
+
+            <!-- Skills -->
+            <h4 class="mt-4 mb-3 border-bottom pb-2 text-primary">Technical Skills</h4>
+            <div id="technical-skills">
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <input type="text" class="form-control mb-2" placeholder="Add your Skills">
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-outline-primary btn-sm mb-3" onclick="addSkills()">
+                <i class="bi bi-plus-circle"></i> Add Skills
+            </button>
+
+            <!-- Buttons -->
+            <div class="d-flex flex-wrap gap-2 mt-4">
+                <button type="reset" class="btn btn-outline-secondary">Clear</button>
+                <button type="button" class="btn btn-outline-info" id="SaveBtn">Save</button>
+                <button type="submit" class="btn btn-primary">Final Submit</button>
+            </div>
+        </form>
+
+        <!-- JavaScript: Add Fields -->
+        <script>
+            function addEducation() {
+                document.getElementById("education-section").insertAdjacentHTML('beforeend', `
+                    <div class="card mb-3 shadow-sm">
+                        <div class="card-body">
+                            <input type="text" class="form-control mb-2" placeholder="Degree">
+                            <input type="text" class="form-control mb-2" placeholder="Institution">
+                            <input type="text" class="form-control mb-2" placeholder="Duration">
+                            <input type="text" class="form-control mb-2" placeholder="CGPA/Grade">
+                        </div>
+                    </div>`);
+            }
+
+            function addProject() {
+                document.getElementById("project-section").insertAdjacentHTML('beforeend', `
+                    <div class="card mb-3 shadow-sm">
+                        <div class="card-body">
+                            <input type="text" class="form-control mb-2" placeholder="Project Title">
+                            <textarea class="form-control mb-2" rows="3" placeholder="Project Description"></textarea>
+                        </div>
+                    </div>`);
+            }
+
+            function addExperience() {
+                document.getElementById("experience-section").insertAdjacentHTML('beforeend', `
+                    <div class="card mb-3 shadow-sm">
+                        <div class="card-body">
+                            <input type="text" class="form-control mb-2" placeholder="Job Title / Role">
+                            <input type="text" class="form-control mb-2" placeholder="Company Name / Freelance">
+                            <input type="text" class="form-control mb-2" placeholder="Duration">
+                            <textarea class="form-control mb-2" rows="3" placeholder="Responsibilities"></textarea>
+                        </div>
+                    </div>`);
+            }
+
+            function addCertification() {
+                document.getElementById("certification-section").insertAdjacentHTML('beforeend', `
+                    <div class="card mb-3 shadow-sm">
+                        <div class="card-body">
+                            <input type="text" class="form-control mb-2" placeholder="Certificate Title">
+                            <input type="file" class="form-control mb-2" name="certification[]">
+                        </div>
+                    </div>`);
+            }
+
+            function addSkills() {
+                document.getElementById("technical-skills").insertAdjacentHTML('beforeend', `
+                    <div class="card mb-3 shadow-sm">
+                        <div class="card-body">
+                            <input type="text" class="form-control mb-2" placeholder="Add your Skills">
+                        </div>
+                    </div>`);
+            }
+        </script>
+    </div>
+</div>

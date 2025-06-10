@@ -1,12 +1,13 @@
+{% extends 'blocks/block_layout.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-<a href="{% url 'edit_view' %}">hi</a>
-<a href="{% static 'pdf/res.pdf' %}" target="_self">View Sample Resume</a>
-</body>
-</html>
+
+
+
+{% block body_block %}
+
+
+
+{% include 'blocks/resumeview_block.html' %}
+
+
+{% endblock body_block %}
